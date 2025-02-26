@@ -153,6 +153,8 @@ jobs:
           df -hT ${PWD}
           mkdir -p /builder/{kernel,output}
           # ln -sf /builder/kernel /home/runner/work/_actions/yYang365/amlogic-s9xxx-armbian/main/compile-kernel/kernel
+          # ln -sf /builder/kernel ${GITHUB_WORKSPACE}/kernel          
+          # ln -sf /builder/output ${GITHUB_WORKSPACE}/output          
           # ln -sf /builder/output /home/runner/work/_actions/yYang365/amlogic-s9xxx-armbian/main/compile-kernel/output
           echo "status=success" >> ${GITHUB_OUTPUT}
 
