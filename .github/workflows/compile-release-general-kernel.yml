@@ -152,14 +152,16 @@ jobs:
         run: |
           df -hT ${PWD}
           mkdir -p /builder/{kernel,output}
+          # ln -sf /builder/kernel ${GITHUB_WORKSPACE}/kernel          
+          # ln -sf /builder/output ${GITHUB_WORKSPACE}/output          
           # ln -sf /builder/kernel /home/runner/work/_actions/yYang365/amlogic-s9xxx-armbian/main/compile-kernel/kernel
-          ln -sf /builder/kernel ${GITHUB_WORKSPACE}/kernel          
-          ln -sf /builder/output ${GITHUB_WORKSPACE}/output          
           # ln -sf /builder/output /home/runner/work/_actions/yYang365/amlogic-s9xxx-armbian/main/compile-kernel/output
+          ln -sf /builder/kernel /home/runner/work/_actions/ophub/amlogic-s9xxx-armbian/main/compile-kernel/kernel
+          ln -sf /builder/output /home/runner/work/_actions/ophub/amlogic-s9xxx-armbian/main/compile-kernel/output
           echo "status=success" >> ${GITHUB_OUTPUT}
 
       - name: Compile the kernel [ ${{ inputs.kernel_version }} ]
-        uses: yYang365/amlogic-s9xxx-armbian@tw07
+        uses: ophub/amlogic-s9xxx-armbian@main
         if: ${{ steps.mapped.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: kernel
